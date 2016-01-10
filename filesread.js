@@ -39,7 +39,7 @@ fs.readdir(process.cwd(), function(err,files){
 	}
 	/**
 	 * 输出完毕后继续读取用户选择
-	 * @return {Null} 
+	 * @return {文件} 
 	 */
 	function read(){
 		console.log("");
