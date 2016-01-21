@@ -76,4 +76,51 @@ fs.readdir(process.cwd(), function(err, files) {
     程序开始
      */
     file(0);
+			i++;
+			if (i==files.length) {
+				read();
+			}else{
+				file(i);
+			}
+		});
+	}
+	/**
+	 * 输出完毕后继续读取用户选择
+	 * @return {文件} 
+	 */
+	function read(){
+		console.log("");
+		process.stdout.write("\033[33mEnter your choice:\033[39m");
+		process.stdin.resume();
+		stdin.setEncoding("utf8");
+		stdin.on("data",option);
+	}
+
+	function option(data){
+		filename=files[Number(data)];
+		
+		if (!filename) {
+			stdout.write("\033[31mEnter your choice:\033[39m");
+		}else{
+			if (stats[Number(data)].isDirectory()) {
+				fs.readdir(__dirname+"/"+filename,function(err,files){
+					console.log("");
+					console.log("("+files.length+"files)");
+					files.forEach(function (file){
+						console.log("-"+file);
+					});
+					console.log("");
+				})
+			}else{
+			fs.readFile(__dirname+"/"+filename, "utf8", function(err,data){
+				console.log("");
+				console.log("\033[90m"+data.replace(/(.*)/g,"$1")+"\033[39m");
+			});
+			}
+		}
+	}
+	/*
+	程序开始
+	 */
+	file(0);
 })
