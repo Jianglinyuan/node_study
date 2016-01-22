@@ -5,7 +5,7 @@ var connect = require('connect');
  */
 var morgan = require('morgan');
 /**
- * 	dev 日志格式 
+ * 	dev  普通日志格式
  */
 var logger = morgan('dev');
 /**
